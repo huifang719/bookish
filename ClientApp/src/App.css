@@ -1,0 +1,58 @@
+.App {
+    width: 100vw;
+}
+
+.social {
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end;
+    padding-left: 50;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.search {
+    width: 50%;
+    padding-right: 10;
+    gap: 10;
+    padding-right: 30;
+    margin-right: 15px;
+}
+
+.cart {
+    align-self: center;
+    /* margin-left: 60; */
+}
+
+.slick-prev, .slick-next {
+    background: #dc3545 !important;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 576px) {
+    .social {
+        display: flex;
+        flex-direction: row;
+        padding-left: 0;
+        align-self: baseline;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .cart {
+        align-self: center;
+        padding-left: 0;
+    }
+}
+
+@media only screen and (max-width: 985px) {
+    .social {
+        width: 6rem;
+        display: flex;
+        flex-direction: row;
+        padding-left: 0;
+        align-self: baseline;
+    }
+}

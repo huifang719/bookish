@@ -8,6 +8,30 @@ const bookInventroy: Product[] = [
         imageUrl: 'https://covers.openlibrary.org/b/id/12726478-L.jpg'
     },
     {
+        OLID: "OL25452011M",
+        name: "Four: A Divergent Collection",
+        author: "Veronica Roth",
+        price: 22.99,
+        description: "This collection of stories follows Four, also known as Tobias Eaton. If you enjoyed the Divergent series, you will love reading the story you know and love in Tobias' view.",
+        imageUrl: 'https://covers.openlibrary.org/b/id/13278331-L.jpg'
+    },
+    {
+        OLID: "OL28414930M",
+        name: "Paper towns",
+        author: "John Green",
+        price: 34.25,
+        description: "One month before graduating from his Central Florida high school, Quentin ¡®Q¡¯ Jacobsen basks in the predictable boringness of his life until the beautiful and exciting Margo Roth Spiegelman, Q's neighbor and classmate, takes him on a midnight adventure and then mysteriously disappears.",
+        imageUrl: 'https://covers.openlibrary.org/b/id/10315202-L.jpg'
+    },
+    {
+        OLID: "OL46418M",
+        name: "The millennium",
+        author: "Upton Sinclair",
+        price: 32.58,
+        description: "",
+        imageUrl: 'https://covers.openlibrary.org/b/id/846707-L.jpg'
+    },
+    {
         OLID: "OL35675912M",
         name: "Harry Potter and the Deathly Hallows",
         author: "J. K. Rowling",
@@ -128,22 +152,6 @@ const bookInventroy: Product[] = [
         imageUrl: 'https://covers.openlibrary.org/b/id/7272906-L.jpg'
     },
     {
-        OLID: "OL38061727M",
-        name: "It Ends with Us, It Starts with Us",
-        author: "Colleen Hoover",
-        price: 34.25,
-        description: "From the #1 bestselling author of All Your Perfects, a workaholic with a too-good-to-be-true romance can't stop thinking about her first love.",
-        imageUrl: 'https://covers.openlibrary.org/b/id/12920899-L.jpg'
-    },
-    {
-        OLID: "OL32532952M",
-        name: "Better Than the Movies",
-        author: "Lynn Painter",
-        price: 22.99,
-        description: "In this rom-com about rom-coms, in the spirit of Kasie West and Jenn Bennett, a hopeless romantic teen attempts to secure a happily-ever-after moment with her forever crush, but finds herself reluctantly drawn to the boy next door.",
-        imageUrl: 'https://covers.openlibrary.org/b/id/11182600-L.jpg'
-    },
-    {
         OLID: "OL26211555M",
         name: "The Magic Of Thinking Big",
         author: "David J. Schwartz",
@@ -210,12 +218,12 @@ const classicBooks: Product[] = [
         imageUrl: 'https://covers.openlibrary.org/b/id/12667428-L.jpg'
     },
     {
-        OLID: "OL29412746M",
-        name: "The Psychology of Money",
-        author: "Morgan Housel",
-        price: 18.58,
-        description: "Timeless lessons on wealth, greed, and happiness doing well with money isn't necessarily about what you know. It¡¯s about how you behave. And behavior is hard to teach, even to really smart people. How to manage money, invest it, and make business decisions are typically considered to involve a lot of mathematical calculations, where data and formulae tell us exactly what to do.",
-        imageUrl: 'https://covers.openlibrary.org/b/id/12824425-L.jpg'
+        OLID: "OL46418M",
+        name: "The millennium",
+        author: "Upton Sinclair",
+        price: 32.58,
+        description: "",
+        imageUrl: 'https://covers.openlibrary.org/b/id/846707-L.jpg'
     },
     {
         OLID: "OL27282505M",
@@ -226,23 +234,22 @@ const classicBooks: Product[] = [
         imageUrl: 'https://covers.openlibrary.org/b/id/8763956-L.jpg'
     },
     {
-        OLID: "OL38061727M",
-        name: "It Ends with Us, It Starts with Us",
-        author: "Colleen Hoover",
+        OLID: "OL28414930M",
+        name: "Paper towns",
+        author: "John Green",
         price: 34.25,
-        description: "From the #1 bestselling author of All Your Perfects, a workaholic with a too-good-to-be-true romance can't stop thinking about her first love.",
-        imageUrl: 'https://covers.openlibrary.org/b/id/12920899-L.jpg'
+        description: "One month before graduating from his Central Florida high school, Quentin ¡®Q¡¯ Jacobsen basks in the predictable boringness of his life until the beautiful and exciting Margo Roth Spiegelman, Q's neighbor and classmate, takes him on a midnight adventure and then mysteriously disappears.",
+        imageUrl: 'https://covers.openlibrary.org/b/id/10315202-L.jpg'
     },
     {
-        OLID: "OL32532952M",
-        name: "Better Than the Movies",
-        author: "Lynn Painter",
+        OLID: "OL25452011M",
+        name: "Four: A Divergent Collection",
+        author: "Veronica Roth",
         price: 22.99,
-        description: "In this rom-com about rom-coms, in the spirit of Kasie West and Jenn Bennett, a hopeless romantic teen attempts to secure a happily-ever-after moment with her forever crush, but finds herself reluctantly drawn to the boy next door.",
-        imageUrl: 'https://covers.openlibrary.org/b/id/11182600-L.jpg'
+        description: "This collection of stories follows Four, also known as Tobias Eaton. If you enjoyed the Divergent series, you will love reading the story you know and love in Tobias' view.",
+        imageUrl: 'https://covers.openlibrary.org/b/id/13278331-L.jpg'
     },
 ];
-
 const TrendingBooks: Product[] = [
     {
         OLID: "OL26992991M",

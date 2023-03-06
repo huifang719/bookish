@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Console.WriteLine("Bookish server's started");
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
@@ -16,7 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 var app = builder.Build();
 
-Console.WriteLine("Ok");
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

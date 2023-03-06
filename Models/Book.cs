@@ -3,7 +3,7 @@
     public class Book
     {
         public int OLID { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         public double Price { get; set; }
         public int Stock { get; set; }
     }

@@ -1,5 +1,6 @@
 ﻿using Bookish.Context;
 using Bookish.data.migrations;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -35,6 +36,8 @@ namespace Bookish.data.migrations
                 }
                 );
         }
+
+
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Details from './components/Details';
 import Cart from './components/Cart';
 import Result from './components/Result';
+import AdminPage from './components/AdminPage';
 
 const App: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
                 <Route path="/details/:id" element={<Details />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/result" element={<Result />} />
+                <Route path="/admin" element={<AdminPage />} />
             </Routes>
         </div>
     );

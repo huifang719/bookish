@@ -51,6 +51,22 @@ namespace Bookish.data.migrations
                    table.PrimaryKey("PK_Users", x => x.Id);
                }
                );
+            migrationBuilder.CreateTable(
+               name: "Users",
+               columns: table => new
+               {
+                   Id = table.Column<int>(type: "integer", nullable: false)
+                   .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                   name = table.Column<string>(type: "text", nullable: false),
+                   email = table.Column<string>(type: "text", nullable: false),
+                   password = table.Column<string>(type: "text", nullable: false),
+                   isadmin = table.Column<bool>(type: "boolean", nullable: false),
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_Users", x => x.Id);
+               }
+               );
         }
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TrendingBooks, classicBooks } from './Products';
 import { Container, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -25,5 +25,8 @@ const AdminPage: React.FC = () => {
         
     )
 }
+
+//search bar -- use OLID to server details 
+//fetch low stock books 
 
 export default AdminPage;

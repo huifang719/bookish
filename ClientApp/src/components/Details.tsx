@@ -14,18 +14,26 @@ const Details: React.FC = () => {
     const displayBook = bookInventroy.filter((book: { OLID: string, imageUrl: string, author: string, price: number, name: string, description: string }) => book.OLID === id)[0]
     const OLID = displayBook.OLID
 
-    useEffect(() => {
-        fetch(`http://openlibrary.org/search.json?q=${id}`)
-            .then(res => res.json())
-            .then(res => {
-                // get the book information
-                console.log(res.docs)
+    const fetchBookInfo = async () => {
+        const res = await fetch(`https://openlibrary.org/search.json?q=${id}`)
+                            .then(res => res.json())
+        const books = res.docs
+        console.log(books)
+        return books
+    }
 
-            })
+    const fetchBookStock = async () => {
+        const book = await fetch(`books/${id}`)
+            .then(res => res.json())
+        console.log(book)
+    }
+
+    useEffect(() => {
+        fetchBookInfo()
+        fetchBookStock()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    console.log(cartItems)
     const addToCart = (): void => {
         let existItem = cartItems.filter((element: { id: string, imageUrl: string, price: number, quantity: number, name: string }) => element.id === OLID)
         if (existItem.length > 0) {

@@ -21,10 +21,12 @@ namespace Bookish.Controllers
             _context = context;
         }
 
+
         // GET: api/Books
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetBook()
         {
+            Console.WriteLine("hello");
           if (_context.Book == null)
           {
               return NotFound();

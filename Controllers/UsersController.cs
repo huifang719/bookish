@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Bookish.Context;
 using Bookish.Models;
 
-namespace Bookish.Controllers
+namespace bookish.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

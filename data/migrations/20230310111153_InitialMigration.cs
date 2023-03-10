@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Bookish.Data.Migrations
+namespace bookish.data.migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

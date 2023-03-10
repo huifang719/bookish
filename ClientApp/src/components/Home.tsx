@@ -9,6 +9,7 @@ const Home: React.FC = () => {
             .then(res => {
                 console.log('back')
             })
+        return books
     }
     useEffect(() => {
         fetchBookList()

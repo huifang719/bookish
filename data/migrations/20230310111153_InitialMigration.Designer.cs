@@ -8,10 +8,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Bookish.Data.Migrations
+namespace bookish.data.migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230309023947_InitialMigration")]
+    [Migration("20230310111153_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

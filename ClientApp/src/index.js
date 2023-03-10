@@ -3,24 +3,30 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import "../node_modules/react-bootstrap/dist/react-bootstrap";
+import "react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { createRoot } from 'react-dom/client';
 
-const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
-);
+const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+
+
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <BrowserRouter basename={ baseUrl }>
             <Provider store={store} >
                 <App />
             </Provider>
         </BrowserRouter>
     </React.StrictMode>
 );
+
+serviceWorkerRegistration.unregister()
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

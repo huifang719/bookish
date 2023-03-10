@@ -3,11 +3,10 @@ import ProductList from './ProductList';
 
 const Home: React.FC = () => {
     const fetchBookList = async () => {
-        console.log("lets go")
         const books = await fetch('books')
             .then(res => res.json())
             .then(res => {
-                console.log('back')
+                console.log(res)
             })
         return books
     }

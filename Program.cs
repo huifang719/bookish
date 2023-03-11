@@ -15,18 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-//add cors policy
-builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
-{
-    build.WithOrigins("https://localhost:44447/").AllowAnyMethod().AllowAnyHeader();
-}));
-
-
 var app = builder.Build();
-
-app.UseCors("corspolicy");
-
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

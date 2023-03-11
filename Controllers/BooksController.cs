@@ -13,7 +13,7 @@ namespace bookish.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("corspolicy")]
+    
     public class BooksController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

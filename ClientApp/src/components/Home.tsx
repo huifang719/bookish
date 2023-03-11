@@ -3,7 +3,7 @@ import ProductList from './ProductList';
 
 const Home: React.FC = () => {
     const fetchBookList = async () => {
-        const response = await fetch('books')
+        const response = await fetch('api/Books')
         const books = await response.json();
         console.log(books)
     }

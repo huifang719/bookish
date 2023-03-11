@@ -1,4 +1,3 @@
-import { FetchData } from "./components/FetchData";
 import Members from './components/Members';
 import Home from './components/Home';
 import Details from './components/Details';

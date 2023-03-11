@@ -1,4 +1,3 @@
-import { FetchData } from "./components/FetchData";
 import Members from './components/Members';
 import Home from './components/Home';
 import Details from './components/Details';
@@ -15,10 +14,6 @@ const AppRoutes = [
     path: '/members',
     element: <Members />
   },
-  {
-    path: '/fetch-data',
-    element: <FetchData />
-   },
   {
     path: '/cart',
     element: <Cart />

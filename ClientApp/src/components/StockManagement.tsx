@@ -13,9 +13,17 @@ const StockManagement: React.FC = () => {
         const { name, value } = event.target;
         setFormState({ ...formState, [name]: value });
     };
-    const addBook = (event: React.FormEvent<HTMLFormElement>): void => {
+    const addBook = async(event: React.FormEvent<HTMLFormElement>): Promise<any> => {
         event.preventDefault()
-        console.log(formState)
+        const response = await fetch('api/Books', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formState)
+        });
+        const data = await response.json();
+        console.log(data)
     }
     return (
         <>

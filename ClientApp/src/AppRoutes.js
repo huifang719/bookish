@@ -16,10 +16,6 @@ const AppRoutes = [
     element: <Members />
   },
   {
-    path: '/fetch-data',
-    element: <FetchData />
-   },
-  {
     path: '/cart',
     element: <Cart />
   },
@@ -32,7 +28,7 @@ const AppRoutes = [
     element: <AdminPage />
     },
   {
-    path: '/details',
+    path: '/details/:id',
     element: <Details />
   }
 ];

@@ -1,12 +1,12 @@
-/*const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const { env } = require('process');
 
 const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
   env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:53979';
 
 const context = [
-    "Books",
-    "Users",
+    "/api/Books",
+    "/api/Users",
 ];
 
 const onError = (err, req, resp, target) => {
@@ -29,4 +29,3 @@ module.exports = function (app) {
 
   app.use(appProxy);
 };
-*/

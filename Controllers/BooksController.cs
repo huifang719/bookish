@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bookish.Context;
 using Bookish.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace bookish.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("corspolicy")]
     public class BooksController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

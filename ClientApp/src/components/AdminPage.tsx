@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { TrendingBooks, classicBooks } from './Products';
 import { Container, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import StockManagement from './StockManagement';
 
 const AdminPage: React.FC = () => {
     return (
@@ -21,6 +22,7 @@ const AdminPage: React.FC = () => {
                     <input></input>
                 </Container>
             ))}
+            <StockManagement />
         </div>
         
     )

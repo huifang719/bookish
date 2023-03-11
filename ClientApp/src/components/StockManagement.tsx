@@ -13,20 +13,28 @@ const StockManagement: React.FC = () => {
         const { name, value } = event.target;
         setFormState({ ...formState, [name]: value });
     };
-    const addBook = (event: React.FormEvent<HTMLFormElement>): void => {
+    const addBook = async(event: React.FormEvent<HTMLFormElement>): Promise<any> => {
         event.preventDefault()
-        console.log(formState)
+        const response = await fetch('api/Books', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formState)
+        });
+        const data = await response.json();
+        console.log(data)
     }
     return (
         <>
             <Form onSubmit={ addBook }>
-                <Form.Text style={{ fontSize: '2rem' }}>Sign Up</Form.Text>
+                <Form.Text style={{ fontSize: '2rem' }}>Add book</Form.Text>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>OLID</Form.Label>
                     <Form.Control type="text" placeholder="Enter OLID" value={formState.OLID} name="OLID" onChange={handleInputChange} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Book Title</Form.Label>
                     <Form.Control type="text" placeholder="Enter name" value={formState.name} name="name"
                         onChange={handleInputChange} required />
                 </Form.Group>
@@ -35,7 +43,7 @@ const StockManagement: React.FC = () => {
                    <Form.Control type="number" placeholder="Enter price" value={formState.price} name="price" onChange={handleInputChange} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>price</Form.Label>
+                    <Form.Label>stock</Form.Label>
                     <Form.Control type="number" placeholder="Enter stock" value={formState.stock} name="stock" onChange={handleInputChange} required />
                 </Form.Group>
                 <Button variant="primary" type="submit">

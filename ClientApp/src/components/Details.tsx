@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col, Image,Button, Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { bookInventroy } from './Products';
 import { FaCartPlus } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 import { addItem, updateItem } from '../features/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import UpdateBook from './UpdateBook';
 
 const Details: React.FC = () => {
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Details: React.FC = () => {
     }
 
     const fetchBookStock = async () => {
-        const book = await fetch(`books/${id}`)
+        const book = await fetch(`api/Books/${id}`)
             .then(res => res.json())
         console.log(book)
     }
@@ -44,6 +45,10 @@ const Details: React.FC = () => {
         }
     }
 
+    const removeBook = async(): Promise<any> => {
+        const book = await fetch(`api/Books/${OLID}`, { method: 'DELETE' })
+            .then(res => res.json())
+    }
     return (
         <Container>
             <IconContext.Provider value={{ size: '3rem', color: 'black' }}>
@@ -59,6 +64,13 @@ const Details: React.FC = () => {
                         <FaCartPlus onClick={addToCart} />
                     </Col>
                 </Row>
+                <Card style={{ width: '18rem' }}>
+                    <Card.Header>{ OLID }</Card.Header>
+                    <Card.Body>
+                        <UpdateBook OLID={OLID} />
+                        <Button onClick={ removeBook } >Remove</Button>
+                    </Card.Body>
+                </Card>
             </IconContext.Provider>
         </Container>
     )

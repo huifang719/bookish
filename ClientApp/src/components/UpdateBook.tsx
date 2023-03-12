@@ -3,14 +3,23 @@ import { Form, Button } from 'react-bootstrap';
 
 interface Props {
     OLID: string;
+    bookState: bookStateValue
 }
-const UpdateBook: React.FC<Props> = ({ OLID } ) => {
-    interface FormState {
-        name: string;
-        price: number;
-        stock: number;
-    }
-    const [formState, setFormState] = useState<FormState>({ name: '', price: 0, stock: 0 });
+
+interface bookStateValue {
+    OLID: string
+    name: string;
+    price: number;
+    stock: number;
+}
+interface FormState {
+    name: string;
+    price: number;
+    stock: number;
+    
+}
+const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
+    const [formState, setFormState] = useState<FormState>({ name: bookState.name, price: bookState.price, stock: bookState.stock });
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormState({ ...formState, [name]: value });
@@ -23,7 +32,7 @@ const UpdateBook: React.FC<Props> = ({ OLID } ) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formState)
+            body: JSON.stringify({ ...formState, OLID: OLID })
         });
         const data = await response.json();
         console.log(data)
@@ -34,7 +43,7 @@ const UpdateBook: React.FC<Props> = ({ OLID } ) => {
             <Form onSubmit={updateBook}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Book Title</Form.Label>
-                    <Form.Control type="text" placeholder="Enter name" value={formState.name} name="name"
+                    <Form.Control type="text" placeholder={bookState.name } value={formState.name} name="name"
                         onChange={handleInputChange} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">

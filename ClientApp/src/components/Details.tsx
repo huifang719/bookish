@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Image,Button, Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { bookInventroy } from './Products';
@@ -8,7 +8,16 @@ import { addItem, updateItem } from '../features/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateBook from './UpdateBook';
 
+interface BookState {
+    OLID:string
+    name: string;
+    price: number;
+    stock: number;
+
+}
+
 const Details: React.FC = () => {
+    const [bookState, setBookState] = useState<BookState>({ OLID: '', name: '', price: 0, stock: 0 })
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cart.value)
     const id = useParams().id
@@ -27,6 +36,7 @@ const Details: React.FC = () => {
         const book = await fetch(`api/Books/OLID/${OLID}`)
             .then(res => res.json())
         console.log(book)
+        setBookState(book)
     }
 
     useEffect(() => {
@@ -67,7 +77,7 @@ const Details: React.FC = () => {
                 <Card style={{ width: '18rem' }}>
                     <Card.Header>{ OLID }</Card.Header>
                     <Card.Body>
-                        <UpdateBook OLID={OLID} />
+                        <UpdateBook OLID={OLID} bookState={bookState} />
                         <Button onClick={ removeBook } >Remove</Button>
                     </Card.Body>
                 </Card>

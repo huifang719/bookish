@@ -24,7 +24,7 @@ const Details: React.FC = () => {
     }
 
     const fetchBookStock = async () => {
-        const book = await fetch(`api/Books/${id}`)
+        const book = await fetch(`api/Books/OLID/${OLID}`)
             .then(res => res.json())
         console.log(book)
     }
@@ -46,7 +46,7 @@ const Details: React.FC = () => {
     }
 
     const removeBook = async(): Promise<any> => {
-        const book = await fetch(`api/Books/${OLID}`, { method: 'DELETE' })
+        const book = await fetch(`api/Books/OLID/${OLID}`, { method: 'DELETE' })
             .then(res => res.json())
     }
     return (

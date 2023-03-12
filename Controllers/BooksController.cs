@@ -35,14 +35,15 @@ namespace bookish.Controllers
         }
 
         // GET: api/Books/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Book>> GetBook(int id)
+        [HttpGet("OLID/{OLID}")]
+        public async Task<ActionResult<Book>> GetBook(string OLID)
         {
+            Console.WriteLine(OLID);
           if (_context.Book == null)
           {
               return NotFound();
           }
-            var book = await _context.Book.FindAsync(id);
+            var book = await _context.Book.FirstOrDefaultAsync(b => b.OLID == OLID);
 
             if (book == null)
             {
@@ -54,10 +55,10 @@ namespace bookish.Controllers
 
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(int id, Book book)
+        [HttpPut("OLID/{OLID}")]
+        public async Task<IActionResult> PutBook(string OLID, Book book)
         {
-            if (id != book.Id)
+            if (OLID != book.OLID)
             {
                 return BadRequest();
             }
@@ -70,7 +71,7 @@ namespace bookish.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(id))
+                if (!BookExists(OLID))
                 {
                     return NotFound();
                 }
@@ -99,14 +100,14 @@ namespace bookish.Controllers
         }
 
         // DELETE: api/Books/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBook(int id)
+        [HttpDelete("OLID/{OLID}")]
+        public async Task<IActionResult> DeleteBook(string OLID)
         {
             if (_context.Book == null)
             {
                 return NotFound();
             }
-            var book = await _context.Book.FindAsync(id);
+            var book = await _context.Book.FirstOrDefaultAsync(b => b.OLID == OLID); ;
             if (book == null)
             {
                 return NotFound();
@@ -118,9 +119,9 @@ namespace bookish.Controllers
             return NoContent();
         }
 
-        private bool BookExists(int id)
+        private bool BookExists(string OLID)
         {
-            return (_context.Book?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Book?.Any(e => e.OLID == OLID)).GetValueOrDefault();
         }
     }
 }

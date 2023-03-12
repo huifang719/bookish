@@ -18,7 +18,7 @@ const UpdateBook: React.FC<Props> = ({ OLID } ) => {
     console.log(OLID)
     const updateBook = async (event: React.FormEvent<HTMLFormElement>): Promise<any> => {
         event.preventDefault()
-        const response = await fetch(`api/Books/${OLID}`, {
+        const response = await fetch(`api/Books/OLID/${OLID}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

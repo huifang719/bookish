@@ -18,13 +18,18 @@ interface FormState {
     stock: number;
     
 }
+
 const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
     const [formState, setFormState] = useState<FormState>({ name: bookState.name, price: bookState.price, stock: bookState.stock });
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormState({ ...formState, [name]: value });
     };
-    console.log(OLID)
+
+
+    const thisBook = { ...formState, OLID: OLID }
+
+    console.log(thisBook)
     const updateBook = async (event: React.FormEvent<HTMLFormElement>): Promise<any> => {
         event.preventDefault()
         const response = await fetch(`api/Books/OLID/${OLID}`, {

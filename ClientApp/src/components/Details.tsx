@@ -13,11 +13,11 @@ interface BookState {
     name: string;
     price: number;
     stock: number;
-
 }
 
 const Details: React.FC = () => {
     const [bookState, setBookState] = useState<BookState>({ OLID: '', name: '', price: 0, stock: 0 })
+    const [stockState, setStockState] = useState<string| null>(null)
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cart.value)
     const id = useParams().id
@@ -28,7 +28,6 @@ const Details: React.FC = () => {
         const res = await fetch(`https://openlibrary.org/search.json?q=${id}`)
                             .then(res => res.json())
         const books = res.docs
-        console.log(books)
         return books
     }
 
@@ -38,6 +37,16 @@ const Details: React.FC = () => {
         console.log(book)
         setBookState(book)
     }
+
+    useEffect(() => {
+        if (bookState.stock === 0) {
+            setStockState("no stock")
+        } else if (bookState.stock < 5) {
+            setStockState("low stock")
+        } else {
+            setStockState("in stock")
+        }
+    }, [bookState])
 
     useEffect(() => {
         fetchBookInfo()
@@ -70,7 +79,8 @@ const Details: React.FC = () => {
                         <h5>{displayBook.name}</h5>
                         <h6>{displayBook.author}</h6>
                         <p>Author: {displayBook.description}</p>
-                        <p>$ {displayBook.price}</p>
+                        <p>$ {bookState.price}</p>
+                        <p style={bookState.stock >5 ? { color: "green" } : {color: "red"} }>{ stockState }</p>
                         <FaCartPlus onClick={addToCart} />
                     </Col>
                 </Row>

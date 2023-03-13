@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import { FaRegEdit } from 'react-icons/fa';
 
 interface Props {
     OLID: string;
@@ -55,9 +56,15 @@ const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
                     <Form.Label>stock</Form.Label>
                     <Form.Control type="number" placeholder="Enter stock" value={formState.stock} name="stock" onChange={handleInputChange} required />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Update Book
-                </Button>
+                <OverlayTrigger
+                    placement="right"
+                    overlay={<Tooltip>
+                        Edit Stock
+                    </Tooltip> }
+                >
+                   <Button type="submit" style={{ border:"none", backgroundColor: "transparent" }}><FaRegEdit /></Button>
+                </OverlayTrigger>
+                
             </Form>
         </>
 

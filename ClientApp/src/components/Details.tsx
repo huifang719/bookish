@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Image,Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Image, Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { bookInventroy } from './Products';
 import { FaCartPlus } from 'react-icons/fa';
@@ -7,6 +7,7 @@ import { IconContext } from 'react-icons';
 import { addItem, updateItem } from '../features/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateBook from './UpdateBook';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 interface BookState {
     OLID:string
@@ -63,13 +64,14 @@ const Details: React.FC = () => {
         }
     }
 
-    const removeBook = async(): Promise<any> => {
+    const removeBook = async (): Promise<any> => {
         const book = await fetch(`api/Books/OLID/${OLID}`, { method: 'DELETE' })
             .then(res => res.json())
     }
+
     return (
         <Container>
-            <IconContext.Provider value={{ size: '3rem', color: 'black' }}>
+            <IconContext.Provider value={{ size: '1.5rem', color: 'black' }}>
                 <Row>
                     <Col xs={12} md={6} xl={6} >
                         <Image src={displayBook.imageUrl} />
@@ -84,10 +86,12 @@ const Details: React.FC = () => {
                     </Col>
                 </Row>
                 <Card style={{ width: '18rem' }}>
-                    <Card.Header>{ OLID }</Card.Header>
+                    <Card.Header style={{display:"inline-flex", justifyContent:"space-around", margin: 0 } }>
+                        <p>{OLID}</p> 
+                            <RiDeleteBinLine onClick={removeBook} />
+                    </Card.Header>
                     <Card.Body>
                         <UpdateBook OLID={OLID} bookState={bookState} />
-                        <Button onClick={ removeBook } >Remove</Button>
                     </Card.Body>
                 </Card>
             </IconContext.Provider>

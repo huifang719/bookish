@@ -25,10 +25,6 @@ const NavigationBar: React.FC = () => {
                         <Nav.Link onClick={() => setExpanded(false)} as={Link} to="/products">Products</Nav.Link>
                         <Nav.Link onClick={() => setExpanded(false)} as={Link} to="./members">Members</Nav.Link>
                     </Nav>
-                    {/* <Form className="d-inline-flex search">
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form> */}
                     < NavSearch />
                     <Row>
                         <Col xs={8} lg={6} md={10} className="cart">

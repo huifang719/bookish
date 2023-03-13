@@ -26,10 +26,6 @@ const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
         setFormState({ ...formState, [name]: value });
     };
 
-
-    const thisBook = { ...formState, OLID: OLID }
-
-    console.log(thisBook)
     const updateBook = async (event: React.FormEvent<HTMLFormElement>): Promise<any> => {
         event.preventDefault()
         const response = await fetch(`api/Books/OLID/${OLID}`, {

@@ -34,7 +34,6 @@ const Details: React.FC = () => {
     const fetchBookStock = async () => {
         const book = await fetch(`api/Books/OLID/${OLID}`)
             .then(res => res.json())
-        console.log(book)
         setBookState(book)
     }
 

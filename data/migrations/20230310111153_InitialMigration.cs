@@ -20,7 +20,8 @@ namespace bookish.data.migrations
                     OLID = table.Column<string>(type: "text", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<double>(type: "double precision", nullable: false),
-                    Stock = table.Column<int>(type: "integer", nullable: false)
+                    Stock = table.Column<int>(type: "integer", nullable: false),
+                    ImageUrl = table.Column<string>(type: null, nullable: false),
                 },
                 constraints: table =>
                 {

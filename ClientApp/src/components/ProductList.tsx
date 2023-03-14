@@ -68,7 +68,7 @@ const ProductList: React.FC = () => {
             <Row>
                 <h6 style={{ textAlign: 'center' }}>Classic</h6>
                 <Slider {...settings} >
-                    {classicBooks.map((product, index) => (
+                    {classicBooks.map((product: { OLID: string, imageUrl: string, author: string, price: number, name: string, description: string }, index) => (
                         <Container key={index} style={{ width: "5rem", height: "auto" }} >
                             <Link to={`/details/${product.OLID}`}>
                                 <Image fluid

@@ -136,14 +136,6 @@ const bookInventroy: Product[] = [
         imageUrl: 'https://covers.openlibrary.org/b/id/9449958-L.jpg'
     },
     {
-        OLID: "OL29412746M",
-        name: "The Psychology of Money",
-        author: "Morgan Housel",
-        price: 18.58,
-        description: "Timeless lessons on wealth, greed, and happiness doing well with money isn¡¯t necessarily about what you know. It¡¯s about how you behave. And behavior is hard to teach, even to really smart people. How to manage money, invest it, and make business decisions are typically considered to involve a lot of mathematical calculations, where data and formulae tell us exactly what to do.",
-        imageUrl: 'https://covers.openlibrary.org/b/id/12824425-L.jpg'
-    },
-    {
         OLID: "OL25439048M",
         name: "Ignite Me",
         author: "Tahereh Mafi",

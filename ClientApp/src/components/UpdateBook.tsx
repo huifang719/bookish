@@ -8,7 +8,7 @@ interface Props {
 }
 
 interface bookStateValue {
-    OLID: string
+    OLID: string;
     name: string;
     price: number;
     stock: number;
@@ -45,7 +45,7 @@ const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
             <Form onSubmit={updateBook}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Book Title</Form.Label>
-                    <Form.Control type="text" placeholder={bookState.name } value={formState.name} name="name"
+                    <Form.Control type="text" placeholder="Enter book title" value={formState.name} name="name"
                         onChange={handleInputChange} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -54,7 +54,7 @@ const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>stock</Form.Label>
-                    <Form.Control type="number" placeholder="Enter stock" value={formState.stock} name="stock" onChange={handleInputChange} required />
+                    <Form.Control type="number" placeholder="Enter Stock" value={formState.stock} name="stock" onChange={handleInputChange} required />
                 </Form.Group>
                 <OverlayTrigger
                     placement="right"

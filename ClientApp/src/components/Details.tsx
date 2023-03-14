@@ -10,14 +10,14 @@ import UpdateBook from './UpdateBook';
 import { RiDeleteBinLine } from 'react-icons/ri';
 
 interface BookState {
-    OLID:string
+    OLID: string;
     name: string;
     price: number;
     stock: number;
 }
 
 const Details: React.FC = () => {
-    const [bookState, setBookState] = useState<BookState>({ OLID: '', name: '', price: 0, stock: 0 })
+    const [bookState, setBookState] = useState<BookState>({ OLID: "", name: "", price: 0, stock:0  })
     const [stockState, setStockState] = useState<string| null>(null)
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cart.value)
@@ -37,6 +37,7 @@ const Details: React.FC = () => {
             .then(res => res.json())
         setBookState(book)
     }
+
 
     useEffect(() => {
         if (bookState.stock === 0) {
@@ -81,19 +82,21 @@ const Details: React.FC = () => {
                         <h6>{displayBook.author}</h6>
                         <p>Author: {displayBook.description}</p>
                         <p>$ {bookState.price}</p>
-                        <p style={bookState.stock >5 ? { color: "green" } : {color: "red"} }>{ stockState }</p>
+                        <p style={ bookState.stock != null && bookState.stock >5 ? { color: "green" } : {color: "red"} }>{ stockState }</p>
                         <FaCartPlus onClick={addToCart} />
                     </Col>
                 </Row>
-                <Card style={{ width: '18rem' }}>
+                {bookState.price != 0? <Card style={{ width: '18rem' }}>
                     <Card.Header style={{display:"inline-flex", justifyContent:"space-around", margin: 0 } }>
                         <p>{OLID}</p> 
                             <RiDeleteBinLine onClick={removeBook} />
                     </Card.Header>
                     <Card.Body>
-                        <UpdateBook OLID={OLID} bookState={bookState} />
+                        <UpdateBook OLID={OLID}
+                            bookState={bookState} 
+                        />
                     </Card.Body>
-                </Card>
+                </Card>: <></>}
             </IconContext.Provider>
         </Container>
     )

@@ -37,8 +37,8 @@ const AdminPage: React.FC = () => {
                     <Card key={index} style={{ width: '3rem' }} >
                         <Card.Img variant="top" src={ book.imageUrl } />
                         <Card.Body>
-                            <Card.Title style={{ display: "inline-flex", justifyContent: "space-between", columnGap:"6rem" }}>
-                                {book.olid} 
+                            <Card.Title style={{ display: "flex", flexDirection:"row", justifyContent: "space-between", margin: 0 }}>
+                                <p>{book.olid}</p> 
                                 <Link to={`/details/${book.olid}`}>
                                     <FaRegEdit />
                                 </Link>

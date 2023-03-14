@@ -14,10 +14,11 @@ interface BookState {
     name: string;
     price: number;
     stock: number;
+    imageUrl:string
 }
 
 const Details: React.FC = () => {
-    const [bookState, setBookState] = useState<BookState>({ OLID: "", name: "", price: 0, stock:0  })
+    const [bookState, setBookState] = useState<BookState>({ OLID: "", name: "", price: 0, stock:0 , imageUrl: ""})
     const [stockState, setStockState] = useState<string| null>(null)
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cart.value)

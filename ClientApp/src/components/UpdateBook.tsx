@@ -12,16 +12,18 @@ interface bookStateValue {
     name: string;
     price: number;
     stock: number;
+    imageUrl: string;
 }
 interface FormState {
     name: string;
     price: number;
     stock: number;
+    imageUrl: string;
     
 }
 
 const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
-    const [formState, setFormState] = useState<FormState>({ name: bookState.name, price: bookState.price, stock: bookState.stock });
+    const [formState, setFormState] = useState<FormState>({ name: bookState.name, price: bookState.price, stock: bookState.stock, imageUrl: bookState.imageUrl });
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormState({ ...formState, [name]: value });
@@ -34,7 +36,7 @@ const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ ...formState, OLID: OLID })
+            body: JSON.stringify({ OLID: OLID, ...formState })
         });
         const data = await response.json();
         console.log(data)
@@ -55,6 +57,10 @@ const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>stock</Form.Label>
                     <Form.Control type="number" placeholder="Enter Stock" value={formState.stock} name="stock" onChange={handleInputChange} required />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>stock</Form.Label>
+                    <Form.Control type="text" placeholder="Enter Image Url" value={formState.imageUrl} name="stock" onChange={handleInputChange} required />
                 </Form.Group>
                 <OverlayTrigger
                     placement="right"

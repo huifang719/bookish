@@ -159,7 +159,7 @@ const StockManagement: React.FC = () => {
         const { name, value } = event.target;
         setFormState({ ...formState, [name]: value });
     };
-    const addAllbook = (event:any) => {
+    const addAllbook = (event: React.SyntheticEvent<EventTarget>) : void => {
         event.preventDefault()
         return stockTake.forEach(stock => {
             fetch('api/Books', {

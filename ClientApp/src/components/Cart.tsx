@@ -1,15 +1,24 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import { removeItem, updateItem } from '../features/cartSlice';
 import { Link } from 'react-router-dom';
+import { RiDeleteBinLine } from 'react-icons/ri';
+
+interface cartItem {
+    id: string;
+    imageUrl: string;
+    price: number;
+    quantity: number;
+    name: string;
+}
 
 const Cart: React.FC = () => {
     const dispatch = useDispatch()
     const CartItems = useSelector((state: any) => state.cart.value)
     const totalPrice = CartItems
-        .reduce((total: number, item: any) => total + item.quantity * item.price, 0)
+        .reduce((total: number, item: cartItem) => total + item.quantity * item.price, 0)
         .toFixed(2)
 
 
@@ -36,7 +45,7 @@ const Cart: React.FC = () => {
     return (
         <Container >
             <h5>Your Cart</h5>
-            {CartItems && CartItems.map((item: { id: string, imageUrl: string, price: number, quantity: number, name: string }, index: number) =>
+            {CartItems && CartItems.map((item: cartItem, index: number) =>
                 <Row
                     style={{ height: "8rem", background: "#E6E3EB", marginBottom: 2 }}
                     key={index}>
@@ -46,11 +55,9 @@ const Cart: React.FC = () => {
                         </Link>
                     </Col>
                     <Col xs={7} lg={5} md={5}>
-                        <Row className='ps-8'>
-                            <Col>{item.name}</Col>
-                            <Col>
-                                <Button onClick={() => handleRemove(index)}>Remove Item</Button>
-                            </Col>
+                        <Row style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
+                           {item.name}
+                           <RiDeleteBinLine onClick={() => handleRemove(index)} /> 
                         </Row>
                         <h6>Price: ${item.price}</h6>
                     </Col>

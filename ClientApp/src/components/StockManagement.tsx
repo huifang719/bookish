@@ -206,7 +206,7 @@ const StockManagement: React.FC = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Image Url</Form.Label>
-                    <Form.Control type="text" placeholder="Enter image url" value={formState.imageUrl} name="name"
+                    <Form.Control type="text" placeholder="Enter image url" value={formState.imageUrl} name="imageUrl"
                         onChange={handleInputChange} required />
                 </Form.Group>
                 <Button variant="primary" type="submit">

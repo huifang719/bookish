@@ -76,10 +76,41 @@ namespace bookish.Controllers
 
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /* [HttpPut("OLID/{OLID}")]
+         public async Task<IActionResult> PutBook(string OLID, Book book)
+         {
+             Console.WriteLine(book.Name);
+
+             if (OLID != book.OLID)
+             {
+                 return BadRequest();
+             }
+
+             _context.Entry(book).State = EntityState.Modified;
+
+             try
+             {
+                 await _context.SaveChangesAsync();
+             }
+             catch (DbUpdateConcurrencyException)
+             {
+                 if (!BookExists(OLID))
+                 {
+                     return NotFound();
+                 }
+                 else
+                 {
+                     throw;
+                 }
+             }
+
+             return NoContent();
+         }*/
+
         [HttpPut("OLID/{OLID}")]
         public async Task<IActionResult> PutBook(string OLID, Book book)
         {
-            
+            Console.WriteLine(book.Name);
             if (OLID != book.OLID)
             {
                 return BadRequest();
@@ -91,75 +122,44 @@ namespace bookish.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                if (!BookExists(OLID))
+                var entry = ex.Entries.Single();
+                var databaseValues = await entry.GetDatabaseValuesAsync();
+                if (databaseValues == null)
                 {
                     return NotFound();
                 }
                 else
                 {
-                    throw;
+                    // Update the entry with the values from the database
+                    var databaseEntry = databaseValues.ToObject();
+                    entry.CurrentValues.SetValues(databaseEntry);
+
+                    // Save the changes again and handle any exceptions
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (Exception)
+                    {
+                        // Handle the exception as needed
+                        throw;
+                    }
                 }
             }
-
             return NoContent();
         }
-
-        /*   [HttpPut("OLID/{OLID}")]
-           public async Task<IActionResult> PutBook(string OLID, Book book)
-           {
-               Console.WriteLine(book.Name);
-               if (OLID != book.OLID)
-               {
-                   return BadRequest();
-               }
-
-               _context.Entry(book).State = EntityState.Modified;
-
-               try
-               {
-                   await _context.SaveChangesAsync();
-               }
-               catch (DbUpdateConcurrencyException ex)
-               {
-                   var entry = ex.Entries.Single();
-                   var databaseValues = await entry.GetDatabaseValuesAsync();
-                   if (databaseValues == null)
-                   {
-                       return NotFound();
-                   }
-                   else
-                   {
-                       // Update the entry with the values from the database
-                       var databaseEntry = databaseValues.ToObject();
-                       entry.CurrentValues.SetValues(databaseEntry);
-
-                       // Save the changes again and handle any exceptions
-                       try
-                       {
-                           await _context.SaveChangesAsync();
-                       }
-                       catch (Exception)
-                       {
-                           // Handle the exception as needed
-                           throw;   
-                       }
-                   }
-               }
-               return NoContent();
-           }*/
 
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
-          Console.WriteLine(book.Name);
-          if (_context.Book == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.Book'  is null.");
-          }
+            if (_context.Book == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Book'  is null.");
+            }
             _context.Book.Add(book);
             await _context.SaveChangesAsync();
 

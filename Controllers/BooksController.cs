@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bookish.Context;
 using Bookish.Models;
-using Microsoft.AspNetCore.Cors;
-using NuGet.Protocol;
 
 namespace bookish.Controllers
 {
@@ -76,38 +69,38 @@ namespace bookish.Controllers
 
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /* [HttpPut("OLID/{OLID}")]
-         public async Task<IActionResult> PutBook(string OLID, Book book)
-         {
-             Console.WriteLine(book.Name);
-
-             if (OLID != book.OLID)
-             {
-                 return BadRequest();
-             }
-
-             _context.Entry(book).State = EntityState.Modified;
-
-             try
-             {
-                 await _context.SaveChangesAsync();
-             }
-             catch (DbUpdateConcurrencyException)
-             {
-                 if (!BookExists(OLID))
-                 {
-                     return NotFound();
-                 }
-                 else
-                 {
-                     throw;
-                 }
-             }
-
-             return NoContent();
-         }*/
-
         [HttpPut("OLID/{OLID}")]
+        public async Task<IActionResult> PutBook(string OLID, Book book)
+        {
+            Console.WriteLine(book.Name);
+
+            if (OLID != book.OLID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(book).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookExists(OLID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        /*[HttpPut("OLID/{OLID}")]
         public async Task<IActionResult> PutBook(string OLID, Book book)
         {
             Console.WriteLine(book.Name);
@@ -149,7 +142,7 @@ namespace bookish.Controllers
                 }
             }
             return NoContent();
-        }
+        }*/
 
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

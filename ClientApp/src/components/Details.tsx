@@ -47,11 +47,11 @@ const Details: React.FC = () => {
     useEffect(() => {
         fetchBookInfo()
         fetchBookStock()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
-    useEffect(() => {
-        
+    useEffect(() => {    
             if (bookState.stock > 5) {
                 setStockState("in stock")
             } else if (bookState.stock > 0) {
@@ -97,7 +97,7 @@ const Details: React.FC = () => {
                             <h6 style={{color: "red"} }>Sorry, we do not have this book in our system</h6>}
                     </Col>
                 </Row>
-                {bookState.price != 0 ?
+                {bookState.price !== 0 ?
                     <Card style={{ width: '18rem' }}>
                         <Card.Header style={{display:"flex", flexDirection: "row",justifyContent:"space-between", margin: 0 } }>
                             <p>{OLID}</p> 

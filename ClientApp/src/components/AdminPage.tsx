@@ -21,7 +21,9 @@ const AdminPage: React.FC = () => {
         const books = await fetch("api/Books/Stock")
             .then(res => res.json())
 
-        setLowStockBooks(books)
+        if (books.status !== 404) {
+            setLowStockBooks(books)
+        }
     }
 
     useEffect(() => {

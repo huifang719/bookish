@@ -59,6 +59,7 @@ namespace bookish.Controllers
         [HttpGet("OLID/{OLID}")]
         public async Task<ActionResult<Book>> GetBook(string OLID)
         {
+            Console.WriteLine(OLID);
           if (_context.Book == null)
           {
               return NotFound();

@@ -35,26 +35,32 @@ const Details: React.FC = () => {
 
     const fetchBookStock = async () => {
         const book = await fetch(`api/Books/OLID/${OLID}`)
-            .then(res => res.json())
-        setBookState(book)
-    }
-
-
-    useEffect(() => {
-        if (bookState.stock === 0) {
-            setStockState("no stock")
-        } else if (bookState.stock < 5) {
-            setStockState("low stock")
+            .then(res => res.json())   
+        if (book.status === 404) {
+            console.log("book not found")
         } else {
-            setStockState("in stock")
+            setBookState(book)  
         }
-    }, [bookState])
-
+          
+                
+    }
     useEffect(() => {
         fetchBookInfo()
         fetchBookStock()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+
+    useEffect(() => {
+        
+            if (bookState.stock > 5) {
+                setStockState("in stock")
+            } else if (bookState.stock > 0) {
+                setStockState("low stock")
+            } else {
+                setStockState("no stock")
+            }
+       
+    }, [bookState])
 
     const addToCart = (): void => {
         let existItem = cartItems.filter((element: { id: string, imageUrl: string, price: number, quantity: number, name: string }) => element.id === OLID)
@@ -82,22 +88,24 @@ const Details: React.FC = () => {
                         <h5>{displayBook.name}</h5>
                         <h6>{displayBook.author}</h6>
                         <p>Author: {displayBook.description}</p>
-                        <p>$ {bookState.price}</p>
-                        <p style={ bookState.stock != null && bookState.stock >5 ? { color: "green" } : {color: "red"} }>{ stockState }</p>
-                        <FaCartPlus onClick={addToCart} />
+                        {bookState.price !== 0 && <p>$ {bookState.price}</p>}
+                        {bookState.price !== 0 && <p style={bookState.stock > 5 ? { color: "green" } : { color: "red" }}>{stockState}</p>}
+                        {bookState.price !==0 && <FaCartPlus onClick={addToCart} />}
                     </Col>
                 </Row>
-                {bookState.price != 0? <Card style={{ width: '18rem' }}>
-                    <Card.Header style={{display:"inline-flex", justifyContent:"space-around", margin: 0 } }>
-                        <p>{OLID}</p> 
+                {bookState.price != 0 ?
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Header style={{display:"flex", flexDirection: "row",justifyContent:"space-between", margin: 0 } }>
+                            <p>{OLID}</p> 
                             <RiDeleteBinLine onClick={removeBook} />
-                    </Card.Header>
-                    <Card.Body>
-                        <UpdateBook OLID={OLID}
-                            bookState={bookState} 
-                        />
-                    </Card.Body>
-                </Card>: <></>}
+                        </Card.Header>
+                        <Card.Body>
+                            <UpdateBook OLID={OLID}
+                                bookState={bookState} 
+                            />
+                        </Card.Body>
+                    </Card> : <></>
+                }
             </IconContext.Provider>
         </Container>
     )

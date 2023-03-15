@@ -88,9 +88,13 @@ const Details: React.FC = () => {
                         <h5>{displayBook.name}</h5>
                         <h6>{displayBook.author}</h6>
                         <p>Author: {displayBook.description}</p>
-                        {bookState.price !== 0 && <p>$ {bookState.price}</p>}
-                        {bookState.price !== 0 && <p style={bookState.stock > 5 ? { color: "green" } : { color: "red" }}>{stockState}</p>}
-                        {bookState.price !==0 && <FaCartPlus onClick={addToCart} />}
+                        {bookState.price !== 0 ?
+                            <>
+                                <p>$ {bookState.price}</p>
+                                <p style={bookState.stock > 5 ? { color: "green" } : { color: "red" }}>{stockState}</p>
+                                <FaCartPlus onClick={addToCart} />
+                            </> : 
+                            <h6 style={{color: "red"} }>Sorry, we do not have this book in our system</h6>}
                     </Col>
                 </Row>
                 {bookState.price != 0 ?

@@ -2,15 +2,24 @@
 ## an E-commerce site built with React and asp .net 
 
 ## :white_check_mark: Requirement to run: 
--Visual Studio
--Node&npm
--PSQL 15
+- Visual Studio
+- Node&npm
+- PSQL 15
 
 - Download :
 ```zsh
-$ git clone 
-$ cd photoguru
-$ node app.js
+$ git clone https://github.com/huifang719/bookish.git
+$ cd bookish
+$ dotnet restore
+$ cd clientAPP
+$ npm i
+```
+start PSQL terminal
+```
+CREATE DATABASE bookish;
+\c bookish
+\password
+253344
 ```
 
 ## :computer: live site coming soon

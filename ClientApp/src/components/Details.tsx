@@ -68,7 +68,7 @@ const Details: React.FC = () => {
             const selectBook = existItem[0]
             dispatch(updateItem({ ...selectBook, quantity: selectBook.quantity + 1 }))
         } else {
-            dispatch(addItem({ id: displayBook.OLID, name: displayBook.name, imageUrl: displayBook.imageUrl, quantity: 1, price: displayBook.price }))
+            dispatch(addItem({ id: displayBook.OLID, name: displayBook.name, imageUrl: displayBook.imageUrl, quantity: 1, price: bookState.price }))
         }
     }
 

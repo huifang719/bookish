@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import { removeItem, updateItem } from '../features/cartSlice';
+import { Link } from 'react-router-dom';
 
 const Cart: React.FC = () => {
     const dispatch = useDispatch()
@@ -40,7 +41,9 @@ const Cart: React.FC = () => {
                     style={{ height: "8rem", background: "#E6E3EB", marginBottom: 2 }}
                     key={index}>
                     <Col xs={3} lg={1} md={1} >
-                        <Image src={item.imageUrl} style={{ height: "8rem" }} />
+                        <Link to={`/details/${item.id}`}>
+                            <Image src={item.imageUrl} style={{ height: "8rem" }} />
+                        </Link>
                     </Col>
                     <Col xs={7} lg={5} md={5}>
                         <Row className='ps-8'>

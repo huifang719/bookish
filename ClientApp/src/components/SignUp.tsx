@@ -1,51 +1,49 @@
-import React, { useState } from 'react'
+import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useForm, FieldValues } from 'react-hook-form';
+import { z } from 'zod';
 
-interface FormState {
-    email: string;
-    password: string;
-    comfirmPassword: string
-}
+
+const schema = z.object({
+    email: z.string().email(),
+    password: z.string(),
+    comfirmPassword: z.string()
+})
+
+type FormData = z.infer<typeof schema>;
 
 const SignUp: React.FC = () => {
-    const [formState, setFormState] = useState<FormState>({ email: '', password: '', comfirmPassword: '' });
-    const [errorMessage, setErrorMessage] = useState<string | null>(null)
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormState({ ...formState, [name]: value });
-    };
-
-    const handleSignUp = (event: React.FormEvent<HTMLFormElement>): void => {
-        event.preventDefault()
-        if (formState.password !== formState.comfirmPassword) {
+    const handleSignUp = (data: FieldValues): void => {
+        console.log(data)
+        /*if (data.password !== data.comfirmPassword) {
             setErrorMessage('Password does not match')
         } else {
             console.log(formState)
-        }
+        }*/
 
     }
     return (
         <>
-            <Form onSubmit={handleSignUp}>
+            <Form onSubmit={handleSubmit(handleSignUp)}>
                 <Form.Text style={{ fontSize: '2rem' }}>Sign Up</Form.Text>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={formState.email} name="email" onChange={handleInputChange} required />
+                    <Form.Control {...register('email')} type="email" placeholder="Enter email"  name="email" required />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={formState.password} name="password"
-                        onChange={handleInputChange} required />
+                    <Form.Control {...register('password')} type="password"  name="password"
+                         required />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3">
                     <Form.Label>Comfirm Password</Form.Label>
-                    <Form.Control type="password" placeholder="Comfirm Password" value={formState.comfirmPassword} name="comfirmPassword" onChange={handleInputChange} required />
+                    <Form.Control {...register('comfirmPassword')} type="password"  name="comfirmPassword" required />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Sign Up
                 </Button>
-                <h5 style={errorMessage === null ? { display: "none" } : { color: "rgb(110,223,94)" }}>{errorMessage}</h5>
             </Form>
         </>
     )

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-    Card, CardGroup, Container } from 'react-bootstrap';
+import { Card, CardGroup, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import StockManagement from './StockManagement';
 import { FaRegEdit } from 'react-icons/fa';
@@ -14,7 +13,6 @@ interface BookState {
 }
 
 const AdminPage: React.FC = () => {
-
     const [lowStockBooks, setLowStockBooks] = useState<BookState[]>([])
     const fetchLowStockBooks = async () => {
         const books = await fetch("api/Books/Stock")

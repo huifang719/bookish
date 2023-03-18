@@ -2,43 +2,44 @@ import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import { login, logout } from '../features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { FieldValues, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
-interface FormState {
-    email: string;
-    password: string;
-}
+const schema = z.object({
+    email: z.string().email(),
+    password: z.number()
+})
+
+type FormData = z.infer<typeof schema>;
 
 const SignIn: React.FC = () => {
-    const [formState, setFormState] = useState<FormState>({ email: '', password: '' });
-    const [errorMessage, setErrorMessage] = useState<string | null>(null)
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
     const dispatch = useDispatch();
     const loggedInEmail = useSelector((state: any) => state.user.value)
-    console.log(loggedInEmail)
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const { name, value } = event.target;
-        setFormState({ ...formState, [name]: value });
-    };
-    const handleSignIn = (event: React.FormEvent<HTMLFormElement>): void => {
-        event.preventDefault()
-        console.log(formState)
-        dispatch(login({ email: formState.email }))
+    const handleSignIn = (data: FieldValues) => {
+        console.log(data)
+        console.log(errors.email?.message)
+       /* dispatch(login({ email: formState.email }))*/
     }
 
     return (
         <>
-            <Form onSubmit={handleSignIn}>
+            <Form onSubmit={handleSubmit(handleSignIn)}>
                 <Form.Text style={{ fontSize: '2rem' }}>Sign In</Form.Text>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" name="email" value={formState.email} onChange={handleInputChange} required />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
+                    <Form.Control {...register('email')}  name="email" />
+                    {/*{errors.password && <Form.Text className="text-danger">
+                        errors.password.message
+                    </Form.Text>}*/}
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" name="password" value={formState.password} onChange={handleInputChange} required />
+                    <Form.Control {...register('password')} type="password" name="password" />
+                    {/*{errors.password && <Form.Text className="text-danger">
+                        errors.password.message
+                    </Form.Text>}*/}
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Sign In

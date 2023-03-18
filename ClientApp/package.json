@@ -42,7 +42,8 @@
     "workbox-range-requests": "^6.5.4",
     "workbox-routing": "^6.5.4",
     "workbox-strategies": "^6.5.4",
-    "workbox-streams": "^6.5.4"
+    "workbox-streams": "^6.5.4",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/react-slick": "^0.23.10",

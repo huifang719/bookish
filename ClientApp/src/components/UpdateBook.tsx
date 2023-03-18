@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { Form, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { FaRegEdit } from 'react-icons/fa';
+import { z } from 'zod';
+
+const FormData = z.object({
+    name: z.string(),
+    price: z.number().min(0),
+    stock: z.number().min(0),
+    imageUrl: z.string()  
+})
+
+type FormState = z.infer<typeof FormData>;
 
 interface Props {
     OLID: string;
@@ -13,13 +23,6 @@ interface bookStateValue {
     price: number;
     stock: number;
     imageUrl: string;
-}
-interface FormState {
-    name: string;
-    price: number;
-    stock: number;
-    imageUrl: string;
-    
 }
 
 const UpdateBook: React.FC<Props> = ({ OLID, bookState } ) => {

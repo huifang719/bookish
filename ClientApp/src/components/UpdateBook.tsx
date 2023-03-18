@@ -3,14 +3,14 @@ import { Form, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { FaRegEdit } from 'react-icons/fa';
 import { z } from 'zod';
 
-const FormData = z.object({
+const schema = z.object({
     name: z.string(),
     price: z.number().min(0),
     stock: z.number().min(0),
     imageUrl: z.string()  
 })
 
-type FormState = z.infer<typeof FormData>;
+type FormState = z.infer<typeof schema>;
 
 interface Props {
     OLID: string;

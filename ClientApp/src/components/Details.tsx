@@ -105,7 +105,6 @@ const Details: React.FC = () => {
                         </Card.Header>
                         <Card.Body>
                             <UpdateBook OLID={OLID}
-                                bookState={bookState} 
                             />
                         </Card.Body>
                     </Card> : <></>

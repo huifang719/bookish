@@ -25,8 +25,11 @@ CREATE DATABASE bookish;
 start nuget manage console
 ```
 add-migration InitialMigration -c applicationdbcontext -o data/migrations
-
-Update-DataBase
+Update-Database
+```
+In terminal, under bookish directory, run:
+```
+dotnet run
 ```
 
 ## :computer: live site coming soon

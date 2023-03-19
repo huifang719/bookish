@@ -22,6 +22,13 @@ CREATE DATABASE bookish;
 253344
 ```
 
+start nuget manage console
+```
+add-migration InitialMigration -c applicationdbcontext -o data/migrations
+
+Update-DataBase
+```
+
 ## :computer: live site coming soon
 ## website outlay
 ![image](https://user-images.githubusercontent.com/112321294/225468821-2a5325bd-964f-4a3c-8433-f2132a29c6db.png)

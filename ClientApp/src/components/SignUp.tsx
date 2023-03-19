@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useForm, FieldValues } from 'react-hook-form';
 import { z } from 'zod';
-
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const schema = z.object({
     email: z.string().email(),
@@ -13,7 +13,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const SignUp: React.FC = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm<FormData>({resolver: zodResolver(schema)});
 
     const handleSignUp = (data: FieldValues): void => {
         console.log(data)
@@ -21,8 +21,8 @@ const SignUp: React.FC = () => {
             setErrorMessage('Password does not match')
         } else {
             console.log(formState)
-        }*/
-
+        }
+*/
     }
     return (
         <>
@@ -30,18 +30,25 @@ const SignUp: React.FC = () => {
                 <Form.Text style={{ fontSize: '2rem' }}>Sign Up</Form.Text>
                 <Form.Group className="mb-3">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control {...register('email')} type="email" placeholder="Enter email"  name="email" required />
+                    <Form.Control {...register('email')} type="email" placeholder="Enter email" name="email" required />
+                    {errors.email && <Form.Text className="text-danger">
+                        {errors.email.message}
+                    </Form.Text>}
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control {...register('password')} type="password"  name="password"
-                         required />
+                        required />
+                    {errors.password && <Form.Text className="text-danger">
+                        {errors.password.message}</Form.Text>}
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Comfirm Password</Form.Label>
                     <Form.Control {...register('comfirmPassword')} type="password"  name="comfirmPassword" required />
+                    {errors.comfirmPassword && <Form.Text className="text-danger">
+                        {errors.comfirmPassword.message}</Form.Text>}
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button disabled={isValid} variant="primary" type="submit">
                     Sign Up
                 </Button>
             </Form>

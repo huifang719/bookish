@@ -27,12 +27,12 @@ CREATE DATABASE bookish;
 ![image](https://user-images.githubusercontent.com/112321294/225468821-2a5325bd-964f-4a3c-8433-f2132a29c6db.png)
 
 ## :rocket: Cool tech
-###using React js for Front-End
+### using React js for Front-End
 - react bootstrap and react icons
 - redux toolkit for statemanagement
 - integrating react-hook-form and zod for form validation 
 - react slick carousel for displaying books
-###using asp .net for Back-End
+### using asp .net for Back-End
 - Entity framework 
 - Identity for Authentication and Autherization
 - PSQL for data storage and management

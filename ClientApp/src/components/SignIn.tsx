@@ -31,16 +31,16 @@ const SignIn: React.FC = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control {...register('email')}  name="email" />
-                    {errors.email && <Form.Text className="text-danger">
-                        {errors.email.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.email?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control {...register('password')} type="password" name="password" />
-                    {errors.password && <Form.Text className="text-danger">
-                        {errors.password.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.password?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Button disabled={!isValid} variant="primary" type="submit">
                     Sign In

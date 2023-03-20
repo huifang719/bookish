@@ -57,30 +57,30 @@ const UpdateBook: React.FC<Props> = ({ OLID, bookDetail }) => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Book Title</Form.Label>
                     <Form.Control {...register('name')} name="name" />
-                    {errors.name && <Form.Text className="text-danger">
-                        {errors.name.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.name?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>price</Form.Label>
                     <Form.Control {...register('price', { valueAsNumber: true })} name="price" />
-                    {errors.price && <Form.Text className="text-danger">
-                        {errors.price.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.price?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>stock</Form.Label>
                     <Form.Control {...register('stock', { valueAsNumber: true })} name="stock" required />
-                    {errors.stock && <Form.Text className="text-danger">
-                        {errors.stock.message}
-                    </Form.Text>}
+                   <Form.Text className="text-danger">
+                        {errors.stock?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Image Url</Form.Label>
                     <Form.Control {...register('imageUrl')} name="imageUrl" />
-                    {errors.imageUrl && <Form.Text className="text-danger">
-                        {errors.imageUrl.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.imageUrl?.message}
+                    </Form.Text>
                 </Form.Group>
                 <OverlayTrigger
                     placement="right"

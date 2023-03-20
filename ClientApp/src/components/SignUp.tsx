@@ -31,22 +31,24 @@ const SignUp: React.FC = () => {
                 <Form.Group className="mb-3">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control {...register('email')} name="email" type="email" />
-                    {errors.email && <Form.Text className="text-danger">
-                        {errors.email.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.email?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control {...register('password')} type="password"  name="password"
                         required />
-                    {errors.password && <Form.Text className="text-danger">
-                        {errors.password.message}</Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.password?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control {...register('confirmPassword')} type="password"  name="confirmPassword" required />
-                    {errors.confirmPassword && <Form.Text className="text-danger">
-                        {errors.confirmPassword.message}</Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.confirmPassword?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Sign Up

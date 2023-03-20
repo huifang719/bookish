@@ -48,39 +48,39 @@ const StockManagement: React.FC = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>OLID</Form.Label>
                     <Form.Control type="text" {...register('olid')} name="olid" />
-                    {errors.olid && <Form.Text className="text-danger">
-                        {errors.olid.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.olid?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Book Title</Form.Label>
                     <Form.Control type="text" {...register('name')} name="name" />
-                    {errors.name && <Form.Text className="text-danger">
-                        {errors.name.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.name?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>price</Form.Label>
                     <Form.Control {...register('price', { valueAsNumber: true })} name="price" />
-                    {errors.price && <Form.Text className="text-danger">
-                        {errors.price.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.price?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>stock</Form.Label>
                     <Form.Control {...register('stock', { valueAsNumber: true })} name="stock" />
-                    {errors.stock && <Form.Text className="text-danger">
-                        {errors.stock.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.stock?.message}
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Image Url</Form.Label>
                     <Form.Control type="text" {...register('imageUrl')} name="imageUrl" />
-                    {errors.imageUrl && <Form.Text className="text-danger">
-                        {errors.imageUrl.message}
-                    </Form.Text>}
+                    <Form.Text className="text-danger">
+                        {errors.imageUrl?.message}
+                    </Form.Text>
                 </Form.Group>
-                <Button disabled={!isValid}  variant="primary" type="submit">
+                <Button variant="primary" type="submit">
                     Add Book
                 </Button>
             </Form> 

@@ -7,19 +7,37 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 const schema = z.object({
     name: z.string(),
-    price: z.number().min(0),
-    stock: z.number().min(0),
+    price: z.number().nonnegative(),
+    stock: z.number().nonnegative(),
     imageUrl: z.string().url() 
 })
 
 type FormData= z.infer<typeof schema>;
 
-interface Props {
+interface BookState {
     OLID: string;
+    name: string;
+    price: number;
+    stock: number;
+    imageUrl: string;
 }
 
-const UpdateBook: React.FC<Props> = ({ OLID } ) => {
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<FormData>({ resolver: zodResolver(schema) })
+interface Props {
+    OLID: string;
+    bookDetail: BookState;
+}
+
+const UpdateBook: React.FC<Props> = ({ OLID, bookDetail }) => {
+    const { name, price, stock, imageUrl } = bookDetail
+    const defaultValues = {
+        olid: OLID,
+        name: name,
+        price: price,
+        stock: stock,
+        imageUrl: imageUrl
+    }
+  
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm<FormData>({ resolver: zodResolver(schema), defaultValues })
 
     const updateBook = async(data: FieldValues) => {
         const response = await fetch(`api/Books/OLID/${OLID}`, {
@@ -39,18 +57,30 @@ const UpdateBook: React.FC<Props> = ({ OLID } ) => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Book Title</Form.Label>
                     <Form.Control {...register('name')} name="name" />
+                    {errors.name && <Form.Text className="text-danger">
+                        {errors.name.message}
+                    </Form.Text>}
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>price</Form.Label>
-                    <Form.Control {...register('price', {valueAsNumber: true})} name="price" required />
+                    <Form.Control {...register('price', { valueAsNumber: true })} name="price" />
+                    {errors.price && <Form.Text className="text-danger">
+                        {errors.price.message}
+                    </Form.Text>}
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>stock</Form.Label>
-                    <Form.Control {...register('stock', { valueAsNumber: true })} name="stock"  required />
+                    <Form.Control {...register('stock', { valueAsNumber: true })} name="stock" required />
+                    {errors.stock && <Form.Text className="text-danger">
+                        {errors.stock.message}
+                    </Form.Text>}
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Image Url</Form.Label>
-                    <Form.Control {...register('imageUrl')} name="imageUrl" required />
+                    <Form.Control {...register('imageUrl')} name="imageUrl" />
+                    {errors.imageUrl && <Form.Text className="text-danger">
+                        {errors.imageUrl.message}
+                    </Form.Text>}
                 </Form.Group>
                 <OverlayTrigger
                     placement="right"
@@ -58,11 +88,8 @@ const UpdateBook: React.FC<Props> = ({ OLID } ) => {
                         Edit Stock
                     </Tooltip> }
                 >
-                   <Button type="submit" style={{ border:"none", backgroundColor: "transparent" }}><FaRegEdit /></Button>
-                </OverlayTrigger>
-                {/*<Button type="submit" style={{ border: "none" }}>
-                    Update
-                </Button>  */}  
+                    <Button type="submit" style={{ border:"none", backgroundColor: "transparent" }}><FaRegEdit /></Button>
+                </OverlayTrigger> 
             </Form>
         </>
 

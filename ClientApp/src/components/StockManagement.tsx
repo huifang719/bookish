@@ -8,15 +8,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 const schema = z.object({
     olid: z.string().startsWith('OL', { message: "OLID should start with OL, and end with M" }).endsWith('M', { message: "OLID should start with OL, and end with M" } ),
     name: z.string(),
-    price: z.number().min(0),
-    stock: z.number().min(0),
+    price: z.number().nonnegative(),
+    stock: z.number().nonnegative(),
     imageUrl: z.string().url()
 })
 
 type FormData = z.infer<typeof schema>;
 
 const StockManagement: React.FC = () => {
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<FormData>({resolver: zodResolver(schema)});
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm<FormData>({ resolver: zodResolver(schema) });
     const addAllbook = (event: React.SyntheticEvent<EventTarget>) : void => {
         event.preventDefault()
         return stockTake.forEach(stock => {
@@ -31,7 +31,7 @@ const StockManagement: React.FC = () => {
     }
     const addBook = async(data: FieldValues) => {
         console.log(data)
-       /* const response = await fetch('api/Books', {
+        const response = await fetch('api/Books', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ const StockManagement: React.FC = () => {
             body: JSON.stringify(data)
         });
         const res = await response.json();
-        console.log(res)*/
+        console.log(res)
     }
     return (
         <>
@@ -47,7 +47,7 @@ const StockManagement: React.FC = () => {
                 <Form.Text style={{ fontSize: '2rem' }}>Add book</Form.Text>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>OLID</Form.Label>
-                    <Form.Control type="text" {...register('olid')} />
+                    <Form.Control type="text" {...register('olid')} name="olid" />
                     {errors.olid && <Form.Text className="text-danger">
                         {errors.olid.message}
                     </Form.Text>}
@@ -80,7 +80,7 @@ const StockManagement: React.FC = () => {
                         {errors.imageUrl.message}
                     </Form.Text>}
                 </Form.Group>
-                <Button  variant="primary" type="submit">
+                <Button disabled={!isValid}  variant="primary" type="submit">
                     Add Book
                 </Button>
             </Form> 

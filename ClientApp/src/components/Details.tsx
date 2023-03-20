@@ -104,7 +104,7 @@ const Details: React.FC = () => {
                             <RiDeleteBinLine onClick={removeBook} />
                         </Card.Header>
                         <Card.Body>
-                            <UpdateBook OLID={OLID}
+                            <UpdateBook OLID={OLID} bookDetail={ bookState }
                             />
                         </Card.Body>
                     </Card> : <></>

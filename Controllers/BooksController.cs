@@ -153,6 +153,10 @@ namespace bookish.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Book'  is null.");
             }
+            if (BookExists(book.OLID))
+            {
+                return Problem("This book is already in the system");
+            }
             _context.Book.Add(book);
             await _context.SaveChangesAsync();
 

@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace bookish.data.migrations
+namespace bookish.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230322011453_Add-User-Class")]
-    partial class AddUserClass
+    [Migration("20230322013214_Initial-Migration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
